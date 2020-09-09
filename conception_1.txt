@@ -1,0 +1,50 @@
+Blindspot:
+
+    Résumé:{{{
+
+        Application de Blindtest basée sur l'API Spotify pour la connexion, les playlists,
+        les catégories, le player, les musiques (et tout ce qui les concerne).
+}}}
+    Objectifs fonctionnels:{{{
+
+        v.1:{{{
+
+            - Connectivité sécurisée avec l'API Spotify
+            - Définition du niveau de difficulté
+            - Donner une réponse
+            - Vérifier la réponse
+            - Système de score
+            - Choix d'un "thème"}}}
+
+        v.2:{{{
+
+            - Création de room
+            - Assignation de rôle (chef de room/buzzer)
+            - Gestion d'équipes
+            (- Tri par pays)}}}
+
+}}}
+    Langage/Frameworks:{{{
+
+        v.1:{{{
+
+            - ReactNative 
+            - Flutter/Dart}}}
+
+        v.2:{{{
+
+            -Swift}}}
+}}}
+    Implications techniques:{{{
+
+        - devenv ⇒ Docker/K8S
+        - git
+        - SCRUM
+        - git flow
+        - CI
+        - Coverage/UT/FT
+        - Caching (react/flutter/redis)
+}}}
+    Licence:{{{
+
+        - MIT}}}
