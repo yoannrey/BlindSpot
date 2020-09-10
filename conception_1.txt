@@ -22,6 +22,10 @@ Blindspot:
             - Assignation de rôle (chef de room/buzzer)
             - Gestion d'équipes
             (- Tri par pays)}}}
+            
+        v.3:{{{
+        
+            -Création de partie en ligne avec les follow mutuels Spotify}}}
 
 }}}
     Langage/Frameworks:{{{
