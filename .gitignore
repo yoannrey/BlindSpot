@@ -13,7 +13,7 @@
 *.iml
 *.ipr
 *.iws
-.idea/
+src/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -23,13 +23,13 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-./src/build/
+/src/.dart_tool/
+/src/.flutter-plugins
+/src/.flutter-plugins-dependencies
+/src/.packages
+/src/.pub-cache/
+/src/.pub/
+/src/build/
 
 # Web related
 lib/generated_plugin_registrant.dart
