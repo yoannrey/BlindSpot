@@ -41,7 +41,10 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
-
+  fonts:
+    - family: Boire
+      fonts:
+        - asset: fonts/Kufam-VariableFont_wght.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
