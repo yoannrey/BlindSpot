@@ -30,6 +30,7 @@ src/.idea/
 /src/.pub-cache/
 /src/.pub/
 /src/build/
+/src/pubspec.lock
 
 # Web related
 lib/generated_plugin_registrant.dart
