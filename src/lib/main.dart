@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart' as prefix;
+import 'package:src/SizeConfig.dart';
 
 void main() async {
  /* final credentials = prefix.SpotifyApiCredentials('d1d31f582c514ff483a45461f4a51003', '7005271fd0b2451e96ee6ea5bbae9d61');
@@ -17,7 +18,7 @@ class BlindSpot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Flutter',
+      title: 'BlindSpot',
       theme: ThemeData(fontFamily: 'Kufam'),
       home: Login()
     );
@@ -38,7 +39,11 @@ class _LoginState extends State<Login> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 50),
-            Image.asset('assets/autocad-dxf-hello-world-png-clip-art.png'),
+            Image.asset(
+                'Spotify-Logo.png',
+                width: 400, // SizeConfig.safeBlockHorizontal * 25,
+                height:  400, // SizeConfig.safeBlockVertical * 55,
+            ),
             const SizedBox(height: 400),
             /*RaisedButton.icon(
               
