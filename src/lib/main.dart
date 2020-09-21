@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart' as prefix;
 //import 'package:src/SizeConfig.dart';
@@ -8,27 +10,30 @@ import 'package:uni_links/uni_links.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final credentials = prefix.SpotifyApiCredentials('d1d31f582c514ff483a45461f4a51003', '7005271fd0b2451e96ee6ea5bbae9d61');
+  print(credentials);
   final grant = prefix.SpotifyApi.authorizationCodeGrant(credentials);
   final redirectUri = 'https://www.example.com/auth';
-  final scopes = ['user-read-email', 'user-library-read'];
+  final scopes = ['user-read-email', 'user-library-read', 'user-top-read'];
   final authUri = grant.getAuthorizationUrl(
       Uri.parse(redirectUri),
-      scopes: scopes// scopes are optional
+      scopes: scopes,// scopes are optional
   );
   if (await canLaunch(authUri.toString())) {
     await launch(authUri.toString());
   }
 
-  if (await canLaunch(authUri.toString())) {
-    await launch(authUri.toString());
-  }
   var responseUri = "";
+  StreamSubscription linksStream;
   // ignore: cancel_subscriptions
-  final linksStream = getLinksStream().listen((String link)  {
+  linksStream = getLinksStream().listen((String link) async {
     if (link.startsWith(redirectUri)) {
+      print('OUI fefzgzergz');
       responseUri = link;
     }
-  });
+  }, onError: (err) {
+    print(err.toString());
+  }
+  );
 
   final spotify = prefix.SpotifyApi.fromAuthCodeGrant(grant, responseUri);
   // runApp(BlindSpot());

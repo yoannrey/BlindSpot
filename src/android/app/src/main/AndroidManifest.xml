@@ -34,8 +34,13 @@
               android:resource="@drawable/launch_background"
               />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
+                <data
+                    android:scheme="https"
+                    android:host="example.com" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
