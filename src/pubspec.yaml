@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   spotify: ^0.3.6
+  url_launcher: ^5.6.0
+  uni_links: ^0.4.0
+  webview_flutter: ^0.3.22
 
 
   # The following adds the Cupertino Icons font to your application.
