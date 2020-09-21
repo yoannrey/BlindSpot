@@ -3,13 +3,11 @@ import 'package:spotify/spotify.dart' as prefix;
 import 'package:src/SizeConfig.dart';
 
 void main() async {
- /* final credentials = prefix.SpotifyApiCredentials('d1d31f582c514ff483a45461f4a51003', '7005271fd0b2451e96ee6ea5bbae9d61');
+  final credentials = prefix.SpotifyApiCredentials('d1d31f582c514ff483a45461f4a51003', '7005271fd0b2451e96ee6ea5bbae9d61');
   final spotify = prefix.SpotifyApi(credentials);
-  var user = spotify.me
-  .get();
-
-  print(user.asStream().first); */
-   runApp(BlindSpot());
+  var user = await spotify.me.get();
+  print(user.id);
+ //  runApp(BlindSpot());
 }
 
 
@@ -40,11 +38,11 @@ class _LoginState extends State<Login> {
           children: <Widget>[
             const SizedBox(height: 50),
             Image.asset(
-                'Spotify-Logo.png',
+                'assets/Spotify-Logo.png',
                 width: 400, // SizeConfig.safeBlockHorizontal * 25,
-                height:  400, // SizeConfig.safeBlockVertical * 55,
+                // SizeConfig.safeBlockVertical * 55,
             ),
-            const SizedBox(height: 400),
+            const SizedBox(height: 100),
             /*RaisedButton.icon(
               
               label: Text('Connect with'),
