@@ -24,10 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   spotify: ^0.3.6
-  uni_links: ^0.4.0
-  url_launcher: ^5.7.1
   flutter_web_auth: ^0.2.4
   webview_flutter: ^0.3.24
+  flutter_swiper: ^1.1.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +37,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+fonts:
+  - family: Raleway
+    fonts:
+      - asset: assets/Raleway-Light.ttf
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -67,7 +70,7 @@ flutter:
   # example:
   # fonts:
   #   - family: Schyler
-  #     fonts:
+
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

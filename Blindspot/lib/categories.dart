@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:spotify/spotify.dart' as prefix;
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'main.dart';
 
 
@@ -20,7 +21,9 @@ class _HomeNavState extends State<HomeNav> {
   void initState() {
     super.initState();
     final api = widget.client;
-    final categories = api.categories.list().all().then((value) => value.toList());
+    String country = 'US';
+    String locale = 'fr_FR';
+    final categories = api.categories.list(country: country).all().then((value) => value.toList());
 
     categories.then((categoriesTmp) {
       categoriesTmp.forEach((element) {
@@ -97,16 +100,92 @@ class _HomeNavState extends State<HomeNav> {
     );
   }
 
+  Widget getIndexWidget(int index) {
+    List<String> difficulty = ['Facile', 'Moyen', 'Difficile'];
+    return Center(
+        child: Text(
+      difficulty[index],
+      style: TextStyle(color: Colors.white),
+    ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final infos = SpotifyContainer.of(context).myDetails;
+    int carouselIndex = 0;
     return Scaffold(
       body: Column(
         children: <Widget>[
           // Liste de toutes les catégories : grid
           Expanded(
             child: _buildCatList(),
-          )
+          ),
+          SizedBox(
+          height: 40,
+          ),
+          Container(
+            height: 50,
+            child: Stack(
+              children: [
+                Container(
+                  height: 20,
+                  child: Swiper(
+                    itemCount: 3,
+                    itemBuilder: (context, index) => getIndexWidget(index), // -> Text widget.
+                    viewportFraction: 1,
+                    onIndexChanged: (value) {
+                      setState(() => carouselIndex = value);
+                    },
+                    loop: false,
+                    controller: new SwiperController(),
+                  ),
+                ),
+                Container(
+                  height: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(Icons.arrow_back_ios,
+                      color: Colors.white,),
+                      Icon(Icons.arrow_forward_ios,
+                      color: Colors.white),
+                      /*getIndicatorWidget(false),  // back arrow icon.
+                      getIndicatorWidget(true),*/   // forward arrow icon.
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Container(
+              width: 250 ,
+              child: RaisedButton(
+                disabledColor: Colors.grey,
+                onPressed: selected == '' ? null : () {},
+                color: Color(0xff1DB954),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14.0)
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const Text('Jouer',
+                        style: TextStyle(fontFamily: 'Raleway')),
+                        Icon(Icons.play_arrow)
+                      ],
+              ),
+                  )
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
           // Difficulté
           
           // Jouer

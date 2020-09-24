@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:Blindspot/categories.dart';
 import 'package:spotify/spotify.dart';
-import 'package:uni_links/uni_links.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 final authorizationUrl = Uri.parse("https://accounts.spotify.com/authorize");
 const scopes = [
