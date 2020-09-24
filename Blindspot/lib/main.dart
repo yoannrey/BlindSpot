@@ -26,10 +26,6 @@ class BlindSpot extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: LoginPage(),
     );
   }
@@ -72,7 +68,6 @@ class LoginPageState extends State<LoginPage> {
         Uri.parse('blindspot://auth'),
         scopes: ['user-read-email', 'user-read-private']
     ).toString();
-    print ('ICI         ' + authUrl);
   }
 
   handleRedirect(String uri) async{
@@ -96,7 +91,7 @@ class LoginPageState extends State<LoginPage> {
         MaterialPageRoute(builder: (context) => SpotifyContainer(
           client: cli,
           myDetails: myDetails,
-          child: HomeNav()
+          child: HomeNav(cli)
         )
         ));
   }
@@ -105,6 +100,9 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final widget = WebView(
       key: webviewKey,
+      /*onWebViewCreated: (ctr) {
+        ctr.clearCache();
+      },*/
       initialUrl: authUrl,
       javascriptMode: JavascriptMode.unrestricted,
       navigationDelegate: (navReq) {
@@ -139,22 +137,5 @@ class LoginPageState extends State<LoginPage> {
   void dispose() {
 //    _sub.cancel();
       super.dispose();
-  }
-}
-
-
-class HomeNav extends StatefulWidget {
-  @override
-  _HomeNavState createState() => _HomeNavState();
-}
-
-class _HomeNavState extends State<HomeNav> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child:
-      Text(SpotifyContainer.of(context).myDetails),
-    );
   }
 }

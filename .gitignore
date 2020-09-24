@@ -23,13 +23,13 @@ src/.idea/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-/src/.dart_tool/
-/src/.flutter-plugins
-/src/.flutter-plugins-dependencies
-/src/.packages
-/src/.pub-cache/
-/src/.pub/
-/src/build/
+/BlindSpot/.dart_tool/
+/BlindSpot/.flutter-plugins
+/BlindSpot/.flutter-plugins-dependencies
+/BlindSpot/.packages
+/BlindSpot/.pub-cache/
+/BlindSpot/.pub/
+/BlindSpot/build/
 
 # Web related
 lib/generated_plugin_registrant.dart
