@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Blindspot/categories.dart';
-import 'package:spotify/spotify.dart';
+import 'package:spotify/spotify.dart' as prefix;
 import 'package:webview_flutter/webview_flutter.dart';
 
 
@@ -25,15 +25,15 @@ class BlindSpot extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: LoginPage(),
+      home: LoginBtn(),
     );
   }
 }
 
 
 class SpotifyContainer extends InheritedWidget {
-  final SpotifyApi client;
-  final User myDetails;
+  final prefix.SpotifyApi client;
+  final prefix.User myDetails;
 
   SpotifyContainer({this.client, this.myDetails, Widget child}) : super(child: child);
 
@@ -47,7 +47,7 @@ class SpotifyContainer extends InheritedWidget {
 
 
 class LoginPage extends StatefulWidget {
-  final grant = SpotifyApi.authorizationCodeGrant(SpotifyApiCredentials('a33521a59f124025999baa9bb36eeb41', '89075e09883a456aa28b624ec1ae2442'));
+  final grant = prefix.SpotifyApi.authorizationCodeGrant(prefix.SpotifyApiCredentials('a33521a59f124025999baa9bb36eeb41', '89075e09883a456aa28b624ec1ae2442'));
 
   @override
   State<StatefulWidget> createState() => LoginPageState();
@@ -73,8 +73,7 @@ class LoginPageState extends State<LoginPage> {
     if (uri == null || !uri.startsWith('blindspot://auth'))
       throw 'invalid uri';
     try {
-      print('AH BON       ' + authUrl);
-      final client = SpotifyApi.fromAuthCodeGrant(widget.grant, uri);
+      final client = prefix.SpotifyApi.fromAuthCodeGrant(widget.grant, uri);
       // TODO: save refresh token
 
       final myDetails = await client.me.get();
@@ -85,7 +84,7 @@ class LoginPageState extends State<LoginPage> {
 
   }
 
-  navigateToApp(SpotifyApi cli, User myDetails) {
+  navigateToApp(prefix.SpotifyApi cli, prefix.User myDetails) {
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => SpotifyContainer(
           client: cli,
@@ -114,19 +113,8 @@ class LoginPageState extends State<LoginPage> {
         handleRedirect(navReq.url);
         return NavigationDecision.navigate;
       },
-    ); /*: Container(
-      color: Theme.of(context).backgroundColor,
-      child: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Welcome to Spotify Manager!\r\nWe'll start right away!", textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle1,),
-                Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: SizedBox(width: 70, height: 70,child: CircularProgressIndicator()),
-                ),
-              ])),
-    );*/
+    );
+    
     return Scaffold(
         body: widget
     );
@@ -136,5 +124,50 @@ class LoginPageState extends State<LoginPage> {
   void dispose() {
 //    _sub.cancel();
       super.dispose();
+  }
+}
+
+class LoginBtn extends StatefulWidget {
+  @override
+  _LoginBtnState createState() => _LoginBtnState();
+}
+
+class _LoginBtnState extends State<LoginBtn> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xff191414),
+        body: Container(
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 50),
+                Center(
+                  child: Image.asset('assets/Spotify_Icon_RGB_Green.png', width: 350),
+                ),
+                const SizedBox(height: 400),
+                Center(child:
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  color: Color(0xff1DB954),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14.0)
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('Connect with ',
+                          style: TextStyle(fontFamily: 'Railway')),
+                      Image.asset('assets/Spotify_Logo_RGB_Black.png', width: 80),
+                    ],
+                  ),
+                  /*color: Colors.purple,*/
+                ),
+                ),
+              ],
+            )
+        )
+    );
   }
 }
