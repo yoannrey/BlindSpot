@@ -29,7 +29,6 @@ class _HomeNavState extends State<HomeNav> {
       categoriesTmp.forEach((element) {
         SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
           _categories = categoriesTmp;
-          print ('coucou ' + _categories.length.toString());
         })
         );
       });
@@ -123,7 +122,7 @@ class _HomeNavState extends State<HomeNav> {
             child: _buildCatList(),
           ),
           SizedBox(
-          height: 40,
+            height: 40,
           ),
           Container(
             height: 50,
@@ -151,8 +150,6 @@ class _HomeNavState extends State<HomeNav> {
                       color: Colors.white,),
                       Icon(Icons.arrow_forward_ios,
                       color: Colors.white),
-                      /*getIndicatorWidget(false),  // back arrow icon.
-                      getIndicatorWidget(true),*/   // forward arrow icon.
                     ],
                   ),
                 ),

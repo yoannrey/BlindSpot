@@ -73,7 +73,6 @@ class LoginPageState extends State<LoginPage> {
     if (uri == null || !uri.startsWith('blindspot://auth'))
       throw 'invalid uri';
     try {
-      print('AH BON       ' + authUrl);
       final client = SpotifyApi.fromAuthCodeGrant(widget.grant, uri);
       // TODO: save refresh token
 
@@ -99,9 +98,6 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final widget = WebView(
       key: webviewKey,
-      /*onWebViewCreated: (ctr) {
-        ctr.clearCache();
-      },*/
       initialUrl: authUrl,
       javascriptMode: JavascriptMode.unrestricted,
       navigationDelegate: (navReq) {
@@ -114,19 +110,7 @@ class LoginPageState extends State<LoginPage> {
         handleRedirect(navReq.url);
         return NavigationDecision.navigate;
       },
-    ); /*: Container(
-      color: Theme.of(context).backgroundColor,
-      child: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Welcome to Spotify Manager!\r\nWe'll start right away!", textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle1,),
-                Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: SizedBox(width: 70, height: 70,child: CircularProgressIndicator()),
-                ),
-              ])),
-    );*/
+    );
     return Scaffold(
         body: widget
     );
@@ -134,7 +118,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-//    _sub.cancel();
       super.dispose();
   }
 }
